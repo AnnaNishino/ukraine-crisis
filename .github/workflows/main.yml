@@ -1,0 +1,35 @@
+name: run
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: Checkout Repository
+        uses: actions/checkout@v2
+      - 
+        name: Setup Python
+        uses: actions/setup-python@v2
+      - 
+        name: Install Package
+        run: |
+          pip install pandas
+          pip install datetime
+          pip install requests
+      - 
+        name: Run py
+        run: python zaporizhia.py
+        
+      - name: Commit and Push
+        run: |
+          git config user.name "AnnaNishino"
+          git config user.email "anna.nishino@nex.nikkei.com"
+          git add .
+          git commit -m "update"
+          git pull --rebase
+          git push origin main
+
