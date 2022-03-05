@@ -20,6 +20,7 @@ jobs:
           pip install pandas
           pip install datetime
           pip install requests
+          pip install lxml
       - 
         name: Run py
         run: python zaporizhia.py
